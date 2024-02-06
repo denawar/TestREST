@@ -3,12 +3,9 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="create_table" author="denawar">
-        <createTable tableName="wallet">
-            <column name="id" type="uuid">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="amount" type="numeric"/>
-        </createTable>
-    </changeSet>
+    <!-- тут я пытался создать своего пользователя и свою базу в которой создастся таблица с кошельками, но создать базу не получилось
+    <include file="changeset-create-app-role.xml" relativeToChangelogFile="true"/>
+    <include file="changeset-create-db.xml" relativeToChangelogFile="true"/>
+    -->
+    <include file="changeset-create-wallet-table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
