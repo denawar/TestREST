@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <include file="changeset-create-app-role.xml" relativeToChangelogFile="true"/>
-    <include file="changeset-create-wallet-table.xml" relativeToChangelogFile="true"/>
+    <changeSet id="create_app_role" author="denawar">
+        <sql endDelimiter=";" splitStatements="true" stripComments="true">
+            **My SQL query/ transactional logic goes here**
+            CREATE ROLE testapp LOGIN PASSWORD ${appuser.password};
+        </sql>
+    </changeSet>
 </databaseChangeLog>
