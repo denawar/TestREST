@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -17,4 +18,6 @@ public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     UUID uuid;
+
+    BigDecimal amount;
 }
