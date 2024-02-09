@@ -14,23 +14,22 @@ public class WalletService {
     private final WalletRepository walletRepository;
 
     public Wallet getWallet(UUID uuid) {
-
-        //return new Wallet().setUuid(UUID.randowalletmUUID());
         return walletRepository.findById(uuid).orElse(null);
     }
 
     public void updateWallet(ChangeWalletObject changeWalletObject) {
-        Wallet existingWalet = walletRepository.findById(changeWalletObject.getWalletUUID()).orElse(null);
-        if (existingWalet != null) {
-            switch (changeWalletObject.getWalletOperation()) {
-                case DEPOSIT -> existingWalet.setAmount(existingWalet.getAmount().add(changeWalletObject.getAmmount()));
+        Wallet existingWallet = walletRepository.findById(UUID.fromString(changeWalletObject.getWalletid())).orElse(null);
+        if (existingWallet != null) {
+            switch (changeWalletObject.getOperationType()) {
+                case DEPOSIT -> existingWallet.setAmount(existingWallet.getAmount().add(changeWalletObject.getAmount()));
                 case WITHDRAW ->
-                        existingWalet.setAmount(existingWalet.getAmount().subtract(changeWalletObject.getAmmount()));
+                        existingWallet.setAmount(existingWallet.getAmount().subtract(changeWalletObject.getAmount()));
                 default ->
-                        throw new IllegalStateException("Unexpected value: " + changeWalletObject.getWalletOperation());
+                        throw new IllegalStateException("Unexpected value: " + changeWalletObject.getOperationType());
             }
+            walletRepository.save(existingWallet);
         } else {
-            throw new EntityNotFoundException("Wallet with UUID = " + changeWalletObject.getWalletUUID() + " not found");
+            throw new EntityNotFoundException("Wallet with UUID = " + changeWalletObject.getWalletid() + " not found");
         }
 
     }

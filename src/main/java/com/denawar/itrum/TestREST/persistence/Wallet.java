@@ -17,7 +17,7 @@ public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    UUID uuid;
+    UUID id;
 
     BigDecimal amount;
 }
